@@ -97,4 +97,4 @@ STRIPE_SECRET_KEY=blabalbalbalbalb
 
 ### 7. MercadoPago Service 
 
-
+Configuracion para mecadopago
