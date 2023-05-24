@@ -11,11 +11,13 @@ export const ConectionPgsql = new DataSource({
   // password: process.env.PSQL_PASSWORD,
   // database: process.env.PSQL_DATABASE,
   url: process.env.URL_DBEXTERNAL,
-  synchronize: true,
+  synchronize: false,
   ssl: true,
   // logging: ["migration", "query", "info"],
   // logging: ["query"],
-  entities: ["src/modules/**/entities/*.entity.ts"],
+  // logging: true,
+  // entities: ["src/modules/**/entities/*.entity.ts"],
+  entities: ["dist/modules/**/entities/*.entity.js"],
   subscribers: [],
   migrations: [
     /*...*/

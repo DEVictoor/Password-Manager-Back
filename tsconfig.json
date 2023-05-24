@@ -9,18 +9,10 @@
     "strict": true,
     "module": "CommonJS",
     "incremental": true,
-    "lib": [
-      "esnext"
-    ],
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "moduleResolution": "node",
     "strictPropertyInitialization": false,
   },
-  // "exclude": [
-  //   "node_modules",
-  //   "./node_modules",
-  //   "./node_modules/*"
-  // ]
 }
