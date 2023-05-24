@@ -37,10 +37,10 @@ class Application {
 
     // Conection to postgresql
     ConectionPgsql.initialize()
-      .then(() => {
+      .then(async () => {
         console.log("DB connected");
         console.log("Check seeders....");
-        this.seed();
+        await this.seed();
         console.log("Seeders executed...");
       })
       .catch((err) => {
@@ -97,9 +97,9 @@ class Application {
     console.table(this.info);
   }
 
-  private seed() {
+  private async seed() {
     const seederService = new SeederService();
-    seederService.seeder();
+    await seederService.seeder();
   }
 }
 

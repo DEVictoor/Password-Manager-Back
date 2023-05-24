@@ -34,8 +34,6 @@ export class UserService {
   }
 
   async seeder(person: Person): Promise<User | void> {
-    if (person.email == "person@persona.gmail") return;
-
     const user = new User();
     user.person = person;
     user.password = await hash("password", 10);

@@ -19,6 +19,8 @@ export class AuthService {
   }: LoginDTO): Promise<{ token: string } | Error> {
     const user = await this._userservice.findOneByEmail(email);
 
+    console.log(user);
+
     if (!user) throw new Error("No se encontro el usuario");
 
     const isMatch = compareSync(password, user.password);

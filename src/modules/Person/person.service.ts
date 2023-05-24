@@ -33,14 +33,14 @@ export class PersonService {
   }
 
   async seeder(): Promise<Person | void> {
-    const foundPerson = await this._repo.findBy({
-      email: "person@person.gmail",
+    const foundPerson = await this._repo.findOneBy({
+      email: "admin@correo.com",
     });
 
-    if (foundPerson) return;
+    if (foundPerson) throw new Error("Ya se creo el usuario");
 
     const person = new Person();
-    person.email = "person@persona.gmail";
+    person.email = "admin@correo.com";
 
     return await person.save();
   }
