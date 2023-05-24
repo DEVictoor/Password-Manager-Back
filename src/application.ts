@@ -43,7 +43,10 @@ class Application {
         this.seed();
         console.log("Seeders executed...");
       })
-      .catch(() => console.log("DB not connected"));
+      .catch((err) => {
+        console.log("DB not connected");
+        console.log(err);
+      });
   }
 
   private registerRouters() {
