@@ -1,28 +1,39 @@
-import { DataSource } from "typeorm";
-import dotenv from "dotenv";
+import { DataSource, DataSourceOptions } from "typeorm";
+import variables from "../configuration/dotenv";
 
-dotenv.config();
+const {
+  NODE_ENV,
+  URL_DBEXTERNAL,
+  PSQL_HOST,
+  PSQL_PORT,
+  PSQL_USER,
+  PSQL_PASSWORD,
+  PSQL_DATABASE,
+} = variables;
 
-export const ConectionPgsql = new DataSource({
-  type: "postgres",
-  // host: process.env.PSQL_HOST,
-  // port: Number(process.env.PSQL_PORT),
-  // username: process.env.PSQL_USER,
-  // password: process.env.PSQL_PASSWORD,
-  // database: process.env.PSQL_DATABASE,
-  url: process.env.URL_DBEXTERNAL,
-  synchronize: true,
-  ssl: false,
-  // logging: ["migration", "query", "info"],
-  // logging: ["query"],
-  // logging: true,
-  // entities: ["src/modules/**/entities/*.entity.ts"],
-  entities: ["dist/modules/**/entities/*.entity.js"],
-  subscribers: [],
-  migrations: [
-    /*...*/
-  ],
-  migrationsTableName: "migrations",
-  migrationsTransactionMode: "all",
-  migrationsRun: true,
-});
+let data: DataSourceOptions;
+
+if (NODE_ENV == "production") {
+  data = {
+    type: "postgres",
+    url: URL_DBEXTERNAL,
+    synchronize: false,
+    ssl: false,
+    logging: false,
+    entities: ["dist/modules/**/entities/*.entity.js"],
+  };
+} else {
+  data = {
+    type: "postgres",
+    host: PSQL_HOST,
+    port: Number(PSQL_PORT),
+    username: PSQL_USER,
+    password: PSQL_PASSWORD,
+    database: PSQL_DATABASE,
+    synchronize: true,
+    entities: ["src/modules/**/entities/*.entity.ts"],
+    logging: true,
+  };
+}
+
+export const ConectionPgsql = new DataSource(data);
