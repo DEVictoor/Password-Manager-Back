@@ -5,11 +5,11 @@ dotenv.config();
 
 export const ConectionPgsql = new DataSource({
   type: "postgres",
-  host: "localhost",
+  host: process.env.PSQL_HOST,
   port: Number(process.env.PSQL_PORT),
   username: process.env.PSQL_USER,
   password: process.env.PSQL_PASSWORD,
-  database: "password_manager",
+  database: process.env.PSQL_DATABASE,
   synchronize: true,
   // logging: ["migration", "query", "info"],
   // logging: ["query"],
