@@ -3,13 +3,11 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "node build/index.js",
-    "predev": "npm run swagger",
-    "prebuild": "npm run swagger",
-    "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec\"",
-    "start:nodemon": "nodemon ./src/index.ts",
-    "build": "npx tsc",
-    "swagger": "tsoa spec"
+    "build": "rimraf dist && tsc",
+    "dev": "nodemon src/index.ts",
+    "start": "cross-env NODE_ENV=production node dist/index.js",
+    "prestart": "npm run build",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -25,6 +23,7 @@
     "morgan": "^1.10.0",
     "pg": "^8.11.0",
     "reflect-metadata": "^0.1.13",
+    "rimraf": "^5.0.1",
     "stripe": "^12.4.0",
     "swagger-ui-express": "^4.6.3",
     "tsoa": "^5.1.1",

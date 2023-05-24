@@ -7,6 +7,8 @@
     "sourceMap": true,
     "outDir": "./dist",
     "strict": true,
+    "module": "CommonJS",
+    "incremental": true,
     "lib": [
       "esnext"
     ],
@@ -14,6 +16,11 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "moduleResolution": "node",
-    "strictPropertyInitialization": false
-  }
+    "strictPropertyInitialization": false,
+  },
+  // "exclude": [
+  //   "node_modules",
+  //   "./node_modules",
+  //   "./node_modules/*"
+  // ]
 }
