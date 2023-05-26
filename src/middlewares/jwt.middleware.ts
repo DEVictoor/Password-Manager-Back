@@ -1,13 +1,12 @@
-import jwt, { Secret, JwtPayload } from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
-import dotenv from "dotenv";
+import variables from "../configuration/dotenv";
 import { getErrorMessage } from "../utils/error.handle";
 
-dotenv.config();
-
-export const SECRET_KEY: Secret = process.env.JWT_KEY || "";
+const { JWT_KEY } = variables;
 
 export interface CustomRequest extends Request {
+  // TODO: validate user_id as UUID
   user_id: string | CustomPayload;
 }
 
@@ -28,7 +27,7 @@ export const JwtAuth = async (
         "Por favor enviame un token tipo Bearer por la cabezera Authorization"
       );
 
-    const decoded = jwt.verify(token, SECRET_KEY) as CustomPayload;
+    const decoded = jwt.verify(token, JWT_KEY) as CustomPayload;
 
     (req as CustomRequest).user_id = decoded.id;
 

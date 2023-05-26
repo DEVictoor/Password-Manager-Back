@@ -32,7 +32,7 @@ if (NODE_ENV == "production") {
     database: PSQL_DATABASE,
     synchronize: true,
     entities: ["src/modules/**/entities/*.entity.ts"],
-    logging: true,
+    logging: false,
   };
 }
 

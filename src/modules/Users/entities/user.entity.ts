@@ -15,18 +15,24 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({ nullable: true })
   username: string;
 
-  @Column()
+  @Column({ nullable: true })
   password: string;
 
   @Column({ default: 0, nullable: true })
   isSubscribed?: boolean;
 
-  @OneToOne(() => Person, (p) => p.user)
+  @OneToOne(() => Person, (p) => p.user, { nullable: false })
   @JoinColumn()
   person: Person;
+
+  @Column()
+  otp: string;
+
+  @Column({ default: 0 })
+  isVerified: boolean;
 
   @CreateDateColumn()
   created_at?: Date;

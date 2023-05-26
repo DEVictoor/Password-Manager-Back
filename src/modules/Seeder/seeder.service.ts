@@ -15,13 +15,7 @@ export class SeederService {
     try {
       const person = await this._person.seeder();
 
-      console.log(person);
-
-      if (!person) throw new Error("No se pudo crear el usuario seed");
-
       const user = await this._user.seeder(person);
-
-      console.log(user);
     } catch (err) {
       console.log(getErrorMessage(err));
     }

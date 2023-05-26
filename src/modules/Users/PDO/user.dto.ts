@@ -1,6 +1,7 @@
+import { Person } from "../../Person/entities/person.entity";
+
 export class UserDTO {
-  username: string;
-  password: string;
-  isSubscribed?: boolean;
-  person_id: string;
+  username?: string;
+  password?: string;
+  person: Person;
 }

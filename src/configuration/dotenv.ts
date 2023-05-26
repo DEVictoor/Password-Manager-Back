@@ -12,8 +12,8 @@ const getEnVar = (v: string): string => {
 
 const variables: IEnVariables = {
   PSQL_USER: getEnVar("PSQL_USER"),
-  PSQL_PASSWORD: getEnVar("PSQL_USER"),
-  PSQL_PORT: getEnVar("PSQL_USER"),
+  PSQL_PASSWORD: getEnVar("PSQL_PASSWORD"),
+  PSQL_PORT: getEnVar("PSQL_PORT"),
   PSQL_NETWORK: getEnVar("PSQL_NETWORK"),
   PSQL_DATABASE: getEnVar("PSQL_DATABASE"),
   PSQL_HOST: getEnVar("PSQL_HOST"),
@@ -35,6 +35,11 @@ const variables: IEnVariables = {
   JWT_KEY: getEnVar("JWT_KEY"),
 
   NODE_ENV: getEnVar("NODE_ENV"),
+
+  GOOGLE_API_KEY: getEnVar("GOOGLE_API_KEY"),
+  GOOGLE_CLIENT_ID: getEnVar("GOOGLE_CLIENT_ID"),
+  GOOGLE_CLIENT_SECRET: getEnVar("GOOGLE_CLIENT_SECRET"),
+  GOOGLE_REFRESH_TOKEN: getEnVar("GOOGLE_REFRESH_TOKEN"),
 };
 
 export default variables;

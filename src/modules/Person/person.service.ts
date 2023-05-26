@@ -1,8 +1,6 @@
 import { ConectionPgsql } from "../../database/conection";
 import { Person } from "./entities/person.entity";
-import { DeleteResult, ObjectId, Repository, UpdateResult } from "typeorm";
-import { User } from "../Users/entities/user.entity";
-import { hash } from "bcrypt";
+import { DeleteResult, Repository, UpdateResult } from "typeorm";
 import { PersonDTO } from "./DTO/person.dto";
 
 export class PersonService {
@@ -21,7 +19,7 @@ export class PersonService {
   }
 
   async create(body: PersonDTO): Promise<Person> {
-    return this._repo.create(body);
+    return this._repo.save(body);
   }
 
   async update(body: PersonDTO, id: string): Promise<UpdateResult> {
@@ -32,16 +30,18 @@ export class PersonService {
     return this._repo.delete({ id });
   }
 
-  async seeder(): Promise<Person | void> {
+  async seeder(): Promise<Person> {
     const foundPerson = await this._repo.findOneBy({
       email: "admin@correo.com",
     });
 
-    if (foundPerson) throw new Error("Ya se creo el usuario");
+    if (foundPerson)
+      throw new Error(
+        "No es necesario crear un persona en el seeder. Ya se creo previamente"
+      );
 
-    const person = new Person();
-    person.email = "admin@correo.com";
+    const person = await this.create({ email: "admin@correo.com" });
 
-    return await person.save();
+    return person;
   }
 }

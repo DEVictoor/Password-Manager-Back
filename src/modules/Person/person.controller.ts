@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { CustomRequest, JwtAuth } from "../../middlewares/jwt.middleware";
-import logger from "../../middlewares/logger.middleware";
 import Controller from "../../utils/controller.decorator";
 import { Get, Post } from "../../utils/handlers.decorator";
 import Middleware from "../../utils/middleware.decorator";

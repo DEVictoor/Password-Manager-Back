@@ -5,7 +5,7 @@ import { getErrorMessage } from "../../utils/error.handle";
 import { Post } from "../../utils/handlers.decorator";
 import { AuthService } from "./auth.service";
 
-@Route("auth")
+// @Route("auth")
 @Controller("/auth")
 export class AuthController {
   private _service: AuthService;
@@ -14,7 +14,7 @@ export class AuthController {
     this._service = new AuthService();
   }
 
-  @tsoaGet("/")
+  // @tsoaGet("/")
   @Post("/login")
   async login({ body }: Request, res: Response) {
     try {
@@ -24,6 +24,18 @@ export class AuthController {
       return res
         .status(400)
         .json({ statuscode: 400, message: getErrorMessage(error) });
+    }
+  }
+
+  @Post("/register")
+  async register(req: Request, res: Response) {
+    try {
+      const user = await this._service.register(req.body.email);
+      await this._service.sendEmailRegister(user);
+      return res.status(200).json({ message: "Todo ok" });
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ code: 400, message: getErrorMessage(err) });
     }
   }
 }
