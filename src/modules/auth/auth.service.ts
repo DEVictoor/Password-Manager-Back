@@ -66,6 +66,7 @@ export class AuthService {
   async sendEmailRegister(user: User) {
     const template = verifyEmail(user.otp, "asdas");
     await this._mailer.createConnection();
+    console.log("asdas");
     await this._mailer.sendEmail("asldhbna1", {
       to: user.person.email,
       subject: "Verify OTP",
