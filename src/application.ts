@@ -39,9 +39,6 @@ class Application {
     ConectionPgsql.initialize()
       .then(async () => {
         console.log("DB connected");
-        console.log("Check seeders....");
-        await this.seed();
-        console.log("Seeders executed...");
       })
       .catch((err) => {
         console.log("DB not connected");

@@ -1,11 +1,9 @@
 import { Request, Response } from "express";
-import { Get as tsoaGet, Route } from "tsoa";
 import Controller from "../../utils/controller.decorator";
 import { getErrorMessage } from "../../utils/error.handle";
 import { Post } from "../../utils/handlers.decorator";
 import { AuthService } from "./auth.service";
 
-// @Route("auth")
 @Controller("/auth")
 export class AuthController {
   private _service: AuthService;
@@ -14,7 +12,6 @@ export class AuthController {
     this._service = new AuthService();
   }
 
-  // @tsoaGet("/")
   @Post("/login")
   async login({ body }: Request, res: Response) {
     try {

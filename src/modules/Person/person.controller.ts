@@ -16,7 +16,6 @@ export class PersonController {
   @Middleware([JwtAuth])
   @Get("")
   async getAll(req: CustomRequest, res: Response) {
-    console.log(req.user_id);
     const personas = await this._service.getAll();
     return res.status(200).json(personas);
   }

@@ -1,18 +1,14 @@
-import { GoogleConfig } from "../Google/google.config";
 import { GoogleService } from "../Google/google.service";
 import nodemailer from "nodemailer";
 import { MailInterface } from "../../interfaces/mailer.interface";
-import { log } from "console";
 
 export class MailerService {
   private static instance: MailerService;
   private transporter: nodemailer.Transporter;
   private sGoogle: GoogleService;
-  private cGoogle: GoogleConfig;
 
   constructor() {
     this.sGoogle = new GoogleService();
-    this.cGoogle = new GoogleConfig();
     this.createConnection();
   }
 
@@ -23,7 +19,7 @@ export class MailerService {
 
   async createConnection() {
     const { GOOGLE_CLIENT_ID, GOOGLE_REFRESH_TOKEN, GOOGLE_CLIENT_SECRET } =
-      this.cGoogle;
+      this.sGoogle;
     const accestoken = await this.sGoogle.getAccesToken();
 
     this.transporter = nodemailer.createTransport({

@@ -1,15 +1,13 @@
 import { GoogleConfig } from "./google.config";
 
-export class GoogleService {
-  public readonly _cGoogle: GoogleConfig;
-
+export class GoogleService extends GoogleConfig {
   constructor() {
-    this._cGoogle = new GoogleConfig();
+    super();
   }
 
   async getAccesToken(): Promise<string> {
-    const { token } = await this._cGoogle.oauthClient.getAccessToken();
-    if (!token) throw new Error("Error para obtner el accessToken");
+    const { token } = await this.oauthClient.getAccessToken();
+    if (!token) throw new Error("Error para obtener el accessToken");
     return token;
   }
 }

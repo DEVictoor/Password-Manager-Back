@@ -4,8 +4,6 @@ import { LoginDTO } from "./DTO/login.dto";
 import { compareSync } from "bcrypt";
 import variables from "../../configuration/dotenv";
 import jwt from "jsonwebtoken";
-import { RegisterDTO } from "./DTO/register.dto";
-import { GoogleConfig } from "../Google/google.config";
 import { User } from "../Users/entities/user.entity";
 import { generateOtp } from "../../utils/otp.helper";
 import { MailerService } from "../mailer/mailer.service";
