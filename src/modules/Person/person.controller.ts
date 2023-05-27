@@ -19,7 +19,4 @@ export class PersonController {
     const personas = await this._service.getAll();
     return res.status(200).json(personas);
   }
-
-  @Post("")
-  async create(req: Request, res: Response) {}
 }

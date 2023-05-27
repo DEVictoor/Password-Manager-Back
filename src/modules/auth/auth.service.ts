@@ -19,7 +19,7 @@ export class AuthService {
   constructor() {
     this._userservice = new UserService();
     this._personService = new PersonService();
-    this._mailer = MailerService.getInstance();
+    this._mailer = new MailerService();
   }
 
   async login({
@@ -65,6 +65,7 @@ export class AuthService {
 
   async sendEmailRegister(user: User) {
     const template = verifyEmail(user.otp, "asdas");
+    await this._mailer.createConnection();
     await this._mailer.sendEmail("asldhbna1", {
       to: user.person.email,
       subject: "Verify OTP",

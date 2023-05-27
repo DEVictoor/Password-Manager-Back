@@ -3,18 +3,11 @@ import nodemailer from "nodemailer";
 import { MailInterface } from "../../interfaces/mailer.interface";
 
 export class MailerService {
-  private static instance: MailerService;
   private transporter: nodemailer.Transporter;
   private sGoogle: GoogleService;
 
   constructor() {
     this.sGoogle = new GoogleService();
-    this.createConnection();
-  }
-
-  static getInstance() {
-    if (!MailerService.instance) MailerService.instance = new MailerService();
-    return MailerService.instance;
   }
 
   async createConnection() {
@@ -57,6 +50,4 @@ export class MailerService {
         return info;
       });
   }
-
-  async emailRegister() {}
 }
