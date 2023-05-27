@@ -4,9 +4,7 @@ import morgan from "morgan";
 import { Metadata as MetadataKeys } from "./enums/Controller.enum";
 import { ConectionPgsql } from "./database/conection";
 import { Router } from "./interfaces/router.interface";
-import swaggerui from "swagger-ui-express";
 import cors from "cors";
-import { SeederService } from "./modules/Seeder/seeder.service";
 
 class Application {
   private readonly _instance: ExApplication;
@@ -22,16 +20,6 @@ class Application {
     this._instance.use("/public", express.static("assets"));
     this._instance.use(cors({ origin: "*" }));
     this._instance.use(morgan("tiny"));
-
-    this._instance.use(
-      "/docs",
-      swaggerui.serve,
-      swaggerui.setup(undefined, {
-        swaggerOptions: {
-          URL: "/swagger.json",
-        },
-      })
-    );
 
     this.registerRouters();
 
@@ -92,11 +80,6 @@ class Application {
   private printConsole() {
     console.clear();
     console.table(this.info);
-  }
-
-  private async seed() {
-    const seederService = new SeederService();
-    await seederService.seeder();
   }
 }
 
