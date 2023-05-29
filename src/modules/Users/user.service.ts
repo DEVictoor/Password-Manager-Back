@@ -61,7 +61,7 @@ export class UserService {
     const user = new User();
     user.person = person;
     user.password = await hash("password", 10);
-    user.otp = "121";
+    user.otp = "12345";
     user.isVerified = true;
     user.username = "username_person";
 

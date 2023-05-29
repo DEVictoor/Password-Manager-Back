@@ -15,7 +15,7 @@ export class SeederService {
     try {
       const person = await this._person.seeder();
 
-      const user = await this._user.seeder(person);
+      await this._user.seeder(person);
     } catch (err) {
       console.log(getErrorMessage(err));
     }

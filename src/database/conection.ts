@@ -17,7 +17,7 @@ if (NODE_ENV == "production") {
   data = {
     type: "postgres",
     url: URL_DBEXTERNAL,
-    synchronize: false,
+    synchronize: true,
     ssl: false,
     logging: false,
     entities: ["dist/modules/**/entities/*.entity.js"],

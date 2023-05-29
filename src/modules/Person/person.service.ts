@@ -35,10 +35,7 @@ export class PersonService {
       email: "admin@correo.com",
     });
 
-    if (foundPerson)
-      throw new Error(
-        "No es necesario crear un persona en el seeder. Ya se creo previamente"
-      );
+    if (foundPerson) return foundPerson;
 
     const person = await this.create({ email: "admin@correo.com" });
 
