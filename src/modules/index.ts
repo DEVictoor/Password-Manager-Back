@@ -1,4 +1,4 @@
-// import { AuthController } from "./auth/auth.controller";
+import { AuthController } from "./auth/auth.controller";
 import { MercadoPagoController } from "./MercadoPago/mercadopago.controller";
 import { PersonController } from "./Person/person.controller";
 import { SeederController } from "./Seeder/seeder.controller";
@@ -10,6 +10,6 @@ export const controllers = [
   MercadoPagoController,
   PersonController,
   SeederController,
-  // AuthController,
+  AuthController,
   // UserController,
 ];

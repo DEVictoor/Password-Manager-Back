@@ -21,8 +21,6 @@ class Application {
     this._instance.use(cors({ origin: "*" }));
     this._instance.use(morgan("tiny"));
 
-    this.registerRouters();
-
     // Conection to postgresql
     ConectionPgsql.initialize()
       .then(async () => {
@@ -32,6 +30,17 @@ class Application {
         console.log("DB not connected");
         console.log(err);
       });
+
+    this.registerRouters();
+
+    this.printMemoryUsage();
+  }
+
+  private printMemoryUsage() {
+    const used = process.memoryUsage().heapUsed / 1024 / 1024;
+    console.log(
+      `The script use aproximately ${Math.round(used * 100) / 100} MB`
+    );
   }
 
   private registerRouters() {

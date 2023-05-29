@@ -14,12 +14,10 @@ const { JWT_KEY } = variables;
 export class AuthService {
   private _userservice: UserService;
   private _personService: PersonService;
-  private _mailer: MailerService;
 
   constructor() {
     this._userservice = new UserService();
     this._personService = new PersonService();
-    this._mailer = new MailerService();
   }
 
   async login({
@@ -49,7 +47,6 @@ export class AuthService {
       const user = await this._userservice.create({ person });
       return user;
     }
-
     if (foundUser.isVerified)
       throw new Error("Correo ya verificado. Por favor elige otro");
 
@@ -65,9 +62,9 @@ export class AuthService {
 
   async sendEmailRegister(user: User) {
     const template = verifyEmail(user.otp, "asdas");
-    await this._mailer.createConnection();
-    console.log("asdas");
-    await this._mailer.sendEmail("asldhbna1", {
+    const sMailer = new MailerService();
+    await sMailer.createConnection();
+    await sMailer.sendEmail("asldhbna1", {
       to: user.person.email,
       subject: "Verify OTP",
       html: template.html,

@@ -1,21 +1,30 @@
-import { GoogleService } from "../Google/google.service";
-import nodemailer from "nodemailer";
+import { Transporter, createTransport } from "nodemailer";
 import { MailInterface } from "../../interfaces/mailer.interface";
+import variables from "../../configuration/dotenv";
+import { OAuth2Client } from "google-auth-library";
 
 export class MailerService {
-  private transporter: nodemailer.Transporter;
-  private sGoogle: GoogleService;
+  private transporter: Transporter;
 
-  constructor() {
-    this.sGoogle = new GoogleService();
-  }
+  constructor() {}
 
   async createConnection() {
     const { GOOGLE_CLIENT_ID, GOOGLE_REFRESH_TOKEN, GOOGLE_CLIENT_SECRET } =
-      this.sGoogle;
-    const accestoken = await this.sGoogle.getAccesToken();
+      variables;
 
-    this.transporter = nodemailer.createTransport({
+    const cGoogle = new OAuth2Client(
+      GOOGLE_CLIENT_ID,
+      GOOGLE_CLIENT_SECRET,
+      "https://developers.google.com/oauthplayground"
+    );
+
+    cGoogle.setCredentials({ refresh_token: GOOGLE_REFRESH_TOKEN });
+
+    const { token } = await cGoogle.getAccessToken();
+
+    if (!token) throw new Error("No se pudo obtener el Acces token de google");
+
+    this.transporter = createTransport({
       service: "gmail",
       auth: {
         type: "OAuth2",
@@ -23,7 +32,7 @@ export class MailerService {
         clientId: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
         refreshToken: GOOGLE_REFRESH_TOKEN,
-        accessToken: accestoken,
+        accessToken: token,
       },
     });
   }
