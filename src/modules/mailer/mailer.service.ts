@@ -9,8 +9,11 @@ export class MailerService {
   constructor() {}
 
   async createConnection() {
-    const { GOOGLE_CLIENT_ID, GOOGLE_REFRESH_TOKEN, GOOGLE_CLIENT_SECRET } =
-      variables;
+    const { 
+      GOOGLE_CLIENT_ID,
+      GOOGLE_REFRESH_TOKEN, 
+      GOOGLE_CLIENT_SECRET,
+    } = variables;
 
     const cGoogle = new OAuth2Client(
       GOOGLE_CLIENT_ID,
@@ -38,17 +41,24 @@ export class MailerService {
   }
 
   async createConnectionGoDaddy() {
+    const {
+      SMTP_HOST, 
+      SMTP_PASS,
+      SMTP_PORT,
+      SMTP_USER
+    } = variables;
+
     this.transporter = createTransport({
       // service: "GoDaddy",
       // host: 'smtpout.secureserver.net',
-      host: "mail.academiapreuniversitariaelite.com",
+      host: SMTP_HOST,
       secure: true,
       requireTLS: true,
       debug: true,
-      port: 465,
+      port: Number(SMTP_PORT),
       auth: {
-        user: 'soporte@academiapreuniversitariaelite.com',
-        pass: 'admminvictor2023%'
+        user: SMTP_USER,
+        pass: SMTP_PASS
       }
     })
   }

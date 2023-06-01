@@ -74,12 +74,13 @@ export class AuthService {
   }
 
   async sendEmailInformation({email, username, telefono} : SendInformation) {
+    const {SMTP_USER} = variables;
     const template = plantillaInfomativa(username, telefono);
     const sMailer = new MailerService();
     await sMailer.createConnectionGoDaddy();
     await sMailer.sendEmail("zxzxc", {
       to: email, 
-      from: 'soporte@academiapreuniversitariaelite.com',
+      from: SMTP_USER,
       subject: "Correo informativo",
       html: template,
     })

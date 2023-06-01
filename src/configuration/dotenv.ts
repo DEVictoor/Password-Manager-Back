@@ -40,6 +40,11 @@ const variables: IEnVariables = {
   GOOGLE_CLIENT_ID: getEnVar("GOOGLE_CLIENT_ID"),
   GOOGLE_CLIENT_SECRET: getEnVar("GOOGLE_CLIENT_SECRET"),
   GOOGLE_REFRESH_TOKEN: getEnVar("GOOGLE_REFRESH_TOKEN"),
+
+  SMTP_HOST: getEnVar("SMTP_HOST"),
+  SMTP_PASS: getEnVar("SMTP_PASS"),
+  SMTP_PORT: getEnVar("SMTP_PORT"),
+  SMTP_USER: getEnVar("SMTP_USER"),
 };
 
 export default variables;

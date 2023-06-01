@@ -277,7 +277,7 @@ export const plantillaInfomativa = function(username: string, telefono: string) 
                                             letter-spacing: normal;
                                           "
                                         >
-                                          &iexcl;�En Qhawana estamos trabajando un Proyecto que cubra todas tus expectativas para que puedas vivir, vacacionar o rentar tu casa de campo en la mejor zona de Tarapoto!
+                                          &iexcl;En Qhawana estamos trabajando un Proyecto que cubra todas tus expectativas para que puedas vivir, vacacionar o rentar tu casa de campo en la mejor zona de Tarapoto!
                                           <span
                                             style="
                                               box-sizing: border-box;
