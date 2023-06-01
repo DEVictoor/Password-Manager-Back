@@ -8,6 +8,8 @@ import { User } from "../Users/entities/user.entity";
 import { generateOtp } from "../../utils/otp.helper";
 import { MailerService } from "../mailer/mailer.service";
 import verifyEmail from "../mailer/templates/verifyEmail";
+import { SendInformation } from "./DTO/send_information.dto";
+import { plantillaInfomativa } from "../mailer/templates/information";
 
 const { JWT_KEY } = variables;
 
@@ -69,5 +71,17 @@ export class AuthService {
       subject: "Verify OTP",
       html: template.html,
     });
+  }
+
+  async sendEmailInformation({email, username, telefono} : SendInformation) {
+    const template = plantillaInfomativa(username, telefono);
+    const sMailer = new MailerService();
+    await sMailer.createConnectionGoDaddy();
+    await sMailer.sendEmail("zxzxc", {
+      to: email, 
+      from: 'soporte@academiapreuniversitariaelite.com',
+      subject: "Correo informativo",
+      html: template,
+    })
   }
 }

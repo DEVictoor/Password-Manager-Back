@@ -35,4 +35,15 @@ export class AuthController {
       return res.status(400).json({ code: 400, message: getErrorMessage(err) });
     }
   }
+
+  @Post("/send-email")
+  async sendBuldEmail(req: Request, res: Response) {
+    try {
+      await this._service.sendEmailInformation(req.body);
+      return res.status(200).json({message: "Email enviado"});
+    }catch (err) {
+      console.log(err)
+      return res.status(400).json({code: 400, message: getErrorMessage(err)})
+    }
+  }
 }

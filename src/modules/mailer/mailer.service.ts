@@ -37,6 +37,22 @@ export class MailerService {
     });
   }
 
+  async createConnectionGoDaddy() {
+    this.transporter = createTransport({
+      // service: "GoDaddy",
+      // host: 'smtpout.secureserver.net',
+      host: "mail.academiapreuniversitariaelite.com",
+      secure: true,
+      requireTLS: true,
+      debug: true,
+      port: 465,
+      auth: {
+        user: 'soporte@academiapreuniversitariaelite.com',
+        pass: 'admminvictor2023%'
+      }
+    })
+  }
+
   async sendEmail(
     requestId: string | number | string[],
     options: MailInterface
@@ -56,6 +72,7 @@ export class MailerService {
         console.log(
           `${requestId} - [MailResponse]=${info.response} [MessageID]=${info.messageId}`
         );
+        console.log(info);
         return info;
       });
   }
